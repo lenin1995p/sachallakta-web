@@ -176,6 +176,21 @@ footer{border-top:1px solid var(--line); padding:52px 0 40px}
   *{animation:none!important; transition:none!important}
   .reveal{opacity:1; transform:none}
 }
+/* ROLE CHOOSER MODAL */
+.role-modal{position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; padding:22px; background:rgba(5,8,11,.72); backdrop-filter:blur(6px)}
+.role-modal.open{display:flex}
+.role-card{position:relative; width:100%; max-width:440px; background:linear-gradient(180deg,var(--card),var(--card-2)); border:1px solid var(--line-2); border-radius:22px; padding:30px 26px 26px; box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
+.role-close{position:absolute; top:12px; right:14px; background:none; border:none; color:var(--muted); font-size:20px; cursor:pointer; line-height:1}
+.role-close:hover{color:var(--text)}
+.role-title{font-family:'Bricolage Grotesque'; font-weight:800; font-size:22px; letter-spacing:-.01em}
+.role-sub{color:var(--muted); font-size:14px; margin:8px 0 20px}
+.role-opt{display:flex; align-items:center; gap:14px; padding:16px; border:1px solid var(--line-2); border-radius:16px; margin-bottom:12px; transition:border-color .18s, transform .18s, background .18s; text-align:left}
+.role-opt:hover{border-color:var(--green); transform:translateY(-1px); background:rgba(47,211,122,.05)}
+.role-ic{font-size:26px; flex:none}
+.role-txt{flex:1; display:flex; flex-direction:column; min-width:0}
+.role-txt b{font-size:15.5px; font-weight:700; color:var(--text)}
+.role-txt small{color:var(--muted); font-size:12.5px; margin-top:2px}
+.role-arrow{color:var(--green); font-size:18px; font-weight:700; flex:none}
 </style>
 </head>
 <body>
@@ -190,15 +205,15 @@ footer{border-top:1px solid var(--line); padding:52px 0 40px}
       <a href="#como" data-i="nav_como">Cómo funciona</a>
       <a href="#features" data-i="nav_func">Funciones</a>
       <a href="#precios" data-i="nav_prec">Precios</a>
-      <a href="https://viaticos.sachallakta.com/sacha-llakta-empleado.html" data-i="nav_emp">Soy empleado</a>
-      <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html" class="btn btn-gold btn-sm" data-i="nav_crear">Crear mi empresa</a>
+      <a href="#" onclick="openRoleChooser(event)" data-i="nav_emp">Unirme</a>
+      <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html?tab=register" class="btn btn-gold btn-sm" data-i="nav_crear">Crear mi empresa</a>
     </nav>
     <div class="nav-right">
       <div class="lang" role="group" aria-label="Idioma / Language">
         <button id="langES" class="lang-btn on" onclick="setLang('es')">ES</button>
         <button id="langEN" class="lang-btn" onclick="setLang('en')">EN</button>
       </div>
-      <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html" class="btn btn-gold btn-sm" data-i="cta_empieza">Empieza gratis</a>
+      <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html?tab=register" class="btn btn-gold btn-sm" data-i="cta_empieza">Empieza gratis</a>
       <button class="hamb" id="hamb" aria-label="Menú">☰</button>
     </div>
   </div>
@@ -212,8 +227,8 @@ footer{border-top:1px solid var(--line); padding:52px 0 40px}
       <h1 data-i="hero_h1">Cada viático de tu equipo, <span class="g">contado al centavo.</span></h1>
       <p class="lead" data-i="hero_lead">Tu cuadrilla registra gastos y fotos de recibos desde el celular. Tú ves el saldo en tiempo real y descargas el reporte en PDF. Sin papeles perdidos, sin hojas de cálculo.</p>
       <div class="hero-cta">
-        <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html" class="btn btn-green" data-i="hero_cta1">Crear mi empresa gratis</a>
-        <a href="https://viaticos.sachallakta.com/sacha-llakta-empleado.html" class="btn btn-ghost" data-i="hero_cta2">Soy empleado, tengo un código</a>
+        <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html?tab=register" class="btn btn-green" data-i="hero_cta1">Crear mi empresa gratis</a>
+        <a href="#" onclick="openRoleChooser(event)" class="btn btn-ghost" data-i="hero_cta2">Ya tengo un código</a>
       </div>
       <div class="hero-trust">
         <span><span class="dot"></span><span data-i="trust1">14 días gratis</span></span>
@@ -302,7 +317,7 @@ footer{border-top:1px solid var(--line); padding:52px 0 40px}
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#2FD37A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="plan_basic_l2">Gastos y recibos ilimitados</span></li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#2FD37A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="plan_basic_l3">Reportes PDF</span></li>
         </ul>
-        <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html" class="btn btn-ghost" data-i="plan_btn">Empezar</a>
+        <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html?tab=register" class="btn btn-ghost" data-i="plan_btn">Empezar</a>
       </div>
 
       <div class="plan pop reveal" style="transition-delay:.08s">
@@ -316,7 +331,7 @@ footer{border-top:1px solid var(--line); padding:52px 0 40px}
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#2FD37A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="plan_pro_l3">Gastos fuera de viaje</span></li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#2FD37A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="plan_pro_l4">Exportar a CSV y PDF</span></li>
         </ul>
-        <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html" class="btn btn-green" data-i="plan_btn">Empezar</a>
+        <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html?tab=register" class="btn btn-green" data-i="plan_btn">Empezar</a>
       </div>
 
       <div class="plan reveal" style="transition-delay:.16s">
@@ -329,7 +344,7 @@ footer{border-top:1px solid var(--line); padding:52px 0 40px}
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#2FD37A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="plan_ent_l2">Todo lo de Pro</span></li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#2FD37A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="plan_ent_l3">Soporte prioritario</span></li>
         </ul>
-        <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html" class="btn btn-ghost" data-i="plan_btn">Empezar</a>
+        <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html?tab=register" class="btn btn-ghost" data-i="plan_btn">Empezar</a>
       </div>
     </div>
     <p class="price-note" data-i="price_note">Todos los planes incluyen 14 días de prueba gratis. ¿Dudas? Escríbenos por WhatsApp.</p>
@@ -342,7 +357,7 @@ footer{border-top:1px solid var(--line); padding:52px 0 40px}
       <h2 data-i="cta_h2">Toma el control de tus viáticos hoy</h2>
       <p data-i="cta_p">Crea tu empresa en un minuto y dale a tu equipo la forma más simple de registrar gastos en campo.</p>
       <div class="hero-cta">
-        <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html" class="btn btn-green" data-i="cta_btn1">Crear mi empresa gratis</a>
+        <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html?tab=register" class="btn btn-green" data-i="cta_btn1">Crear mi empresa gratis</a>
         <a href="#precios" class="btn btn-ghost" data-i="cta_btn2">Ver precios</a>
       </div>
     </div>
@@ -368,7 +383,7 @@ footer{border-top:1px solid var(--line); padding:52px 0 40px}
         </div>
         <div class="foot-col">
           <h4 data-i="foot_acc">Acceso</h4>
-          <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html" data-i="foot_sup_panel">Panel de supervisor</a>
+          <a href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html?tab=register" data-i="foot_sup_panel">Panel de supervisor</a>
           <a href="https://viaticos.sachallakta.com/sacha-llakta-empleado.html" data-i="foot_emp_app">App de empleado</a>
         </div>
         <div class="foot-col">
@@ -468,7 +483,13 @@ var I18N = {
   foot_sup_panel:{es:"Panel de supervisor",en:"Supervisor panel"},
   foot_emp_app:{es:"App de empleado",en:"Employee app"},
   foot_soporte:{es:"Soporte",en:"Support"},
-  foot_copy:{es:'© <span class="yr"></span> Sacha Llakta · Control de Viáticos',en:'© <span class="yr"></span> Sacha Llakta · Expense Control'}
+  foot_copy:{es:'© <span class="yr"></span> Sacha Llakta · Control de Viáticos',en:'© <span class="yr"></span> Sacha Llakta · Expense Control'},
+  role_title:{es:'¿Cómo te unes a tu equipo?',en:'How do you join your team?'},
+  role_sub:{es:'Elige tu rol para entrar al lugar correcto.',en:'Choose your role to land in the right place.'},
+  role_emp_h:{es:'Empleado de campo',en:'Field employee'},
+  role_emp_p:{es:'Registro mis gastos y recibos del viaje.',en:'I log my trip expenses and receipts.'},
+  role_sup_h:{es:'Supervisor / Manager invitado',en:'Invited supervisor / manager'},
+  role_sup_p:{es:'Gestiono al equipo con un código de empresa.',en:'I manage the team with a company code.'}
 };
 
 function setLang(lang){
@@ -483,6 +504,11 @@ function setLang(lang){
   if(en) en.classList.toggle('on', lang==='en');
   try{ localStorage.setItem('sl_lang', lang); }catch(e){}
 }
+
+// Role chooser modal (from "Unirme" / "Ya tengo un código")
+function openRoleChooser(e){ if(e) e.preventDefault(); document.getElementById('role-modal').classList.add('open'); }
+function closeRoleChooser(){ document.getElementById('role-modal').classList.remove('open'); }
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeRoleChooser(); });
 
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -540,5 +566,24 @@ function setLang(lang){
   io2.observe(device);
 })();
 </script>
+<!-- ROLE CHOOSER MODAL -->
+<div id="role-modal" class="role-modal" onclick="if(event.target===this)closeRoleChooser()">
+  <div class="role-card">
+    <button class="role-close" onclick="closeRoleChooser()" aria-label="Cerrar">✕</button>
+    <div class="role-title" data-i="role_title">¿Cómo te unes a tu equipo?</div>
+    <div class="role-sub" data-i="role_sub">Elige tu rol para entrar al lugar correcto.</div>
+    <a class="role-opt" href="https://viaticos.sachallakta.com/sacha-llakta-empleado.html">
+      <span class="role-ic">👷</span>
+      <span class="role-txt"><b data-i="role_emp_h">Empleado de campo</b><small data-i="role_emp_p">Registro mis gastos y recibos del viaje.</small></span>
+      <span class="role-arrow">→</span>
+    </a>
+    <a class="role-opt" href="https://viaticos.sachallakta.com/sacha-llakta-supervisor.html?tab=join">
+      <span class="role-ic">🧑‍💼</span>
+      <span class="role-txt"><b data-i="role_sup_h">Supervisor / Manager invitado</b><small data-i="role_sup_p">Gestiono al equipo con un código de empresa.</small></span>
+      <span class="role-arrow">→</span>
+    </a>
+  </div>
+</div>
+
 </body>
 </html>
