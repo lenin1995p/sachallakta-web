@@ -1,8 +1,0 @@
-{
-  // Debe coincidir EXACTO con el nombre del Worker que ya sirve sachallakta.com,
-  // para que este deploy lo actualice y conserve el dominio.
-  "name": "sachallakta-web",
-  "compatibility_date": "2026-07-01",
-  // Sirve los archivos estáticos de la carpeta ./public (ahí va index.html).
-  "assets": { "directory": "./public" }
-}
